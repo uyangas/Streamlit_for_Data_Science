@@ -11,7 +11,7 @@ pd.set_option('display.float_format', '{:.2f}'.format)
 st.set_page_config(layout='wide')
 
 def load_data():
-    df = pd.read_excel(os.path.join(PATH, "Coffee Shop Sales.xlsx"))
+    df = pd.read_excel(os.path.join(PATH, "Data/Coffee Shop Sales.xlsx"))
     df = process_data(df)
 
     return df
