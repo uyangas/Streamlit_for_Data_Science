@@ -3,13 +3,25 @@
 1. Апп үүсгэх, уншуулах
     - `streamlit run app.py`
 1. `config.toml` файлд өөрчлөлт оруулах
-    - `streamlit config show`
-    - `code ~/.streamlit/config.toml`
-    - `touch ~/.streamlit/config.toml`
+    - `streamlit config show`: одоогийн байгаа тохиргоог харах
+    - `code ~/.streamlit/config.toml`: `.toml` файлыг код IDE-р өөрчлөлт оруулах
+    - `touch ~/.streamlit/config.toml`: `.toml` файлыг идэвхижүүлэх
 1. Хуудасны тохиргоо хийх
     - `st.set_page_config()`
-        - `page_title`: Sets the title of the Streamlit app displayed in the browser tab
-        - `page_icon`: Sets the favicon of the Streamlit app displayed in the browser tab
-        - `layout`: Sets the initial state of the sidebar `"wide", "centered"`
-        - `initial_sidebar_state`: Sets the initial state of the sidebar. `"auto", "expanded", "collapsed"`
-        - `menu_items`: A dictionary of menu items to be displayed in the app sidebar. The keys are the labels, and the values are functions to be called when the item is clicked
+        - `page_title`: веб browser-н tab дээр харагдах гарчгийг тавих
+        - `page_icon`: веб browser-н tab дээр харагдах icon тавих
+        - `layout`: sidebar-н хэлбэрийг өргөн эсвэл төвлөрсөн байдлаар өөрчлөх - `"wide", "centered"`
+        - `initial_sidebar_state`: sidebar-н анх эхлэхэд харагдах байдлыг тохруулах - `"auto", "expanded", "collapsed"`
+        - `menu_items`: sidebar дээр меню байдлаар харуулах зүйлсийн жагсаалтыг dictionary байдлаар өгөх хувьсагч. Dictionary-н key нь меню-н нэр ба нэр дээр дарахад value-д өгсөн зүйл уншигдана. 
+1. Хэвлэх болон текс бичих функцууд
+    - `st.write`: текст, өгөгдөл, медиа элементүүдийг апп дээр харуулахад ашиглах функц. Текст, тоо, dataframe, зураг, видео зэрэг олон төрлийн өгөгдлийг харуулах боломжтой.
+    - `st.markdown`: Markdown форматаар текстийг харуулах функц. Bold, italic болгох болон гарчиг, дэд гарчиг, тексттэй линк холбох зэрэг үйлдлүүдийг хийх боломжтой.
+    - `st.text`: ямар нэг форматгүйгээр текстийг хамгийн энгийн байдлаар хэвлэх функц. Ихэнхдээ задгай текст эсвэл debug хийж буй мэдээллийг харуулахад ашиглагддаг. 
+    - `st.header`: Том үсгээр гарчиг харуулахад ашиглагдана.
+    - `st.subheader`: Том гарчигнаас жижиг хэмжээ бүхий гарчгийг харуулахад ашиглана.
+    - `st.title`: Гарчиг текстийг апп-н хамгийн дээд талд харуулахад ашиглана. Ихэвчлэн апп-н бүх хуудаст ашиглагдах гарчиг байдлаар хэрэглэдэг. 
+    - `st.caption`: Апп-н доод талд caption текст-г харуулахад ашиглана. 
+    - `st.code`: Ямар нэг код-н жишээ болон үр дүнг нь харуулахад ашиглана.
+    - `st.json`: JSON формат бүхий өгөгдлийг харуулахад ашиглана жишээлбэл API-н хариу эсвэл configuration file-г харуулах гм.
+    - `st.latex`: LaTeX форматаар математикийн ухагдахуунуудыг харуулахад ашиглана.
+    - `st.echo`: Код болон үр дүнг апп-д харуулахад ашиглана.
