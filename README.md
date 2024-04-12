@@ -25,5 +25,3 @@
 1. Streamlit апп-г deploy хийх
     - Streamlit cloud ашиглах
     - Cloud үйлчилгээ ашиглан deploy хийх
-1. Бусад компонентүүд
-    - Survey 
