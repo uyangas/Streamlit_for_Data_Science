@@ -22,7 +22,8 @@
         - Intro to `bokeh`
         - Intro to `altair`
         - Intro to `pydeck`
-    - Товч, slider үүсгэх
+1. Widget функцууд
+   - Товч, slider үүсгэх
     - Багана, таб, хуудас үүсгэх
 1. Streamlit апп-г deploy хийх
     - Streamlit cloud ашиглах
