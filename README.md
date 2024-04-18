@@ -7,6 +7,8 @@
 - `bokeh`
 - `pydeck`
 - `altair`
+- `matplotlib`
+- `openpyxl`
 
 ## Хичээлийн агуулга:
 

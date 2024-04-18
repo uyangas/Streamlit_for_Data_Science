@@ -4,7 +4,6 @@ import numpy as np
 import os
 import sys
 import json
-import matplotlib.pyplot as plt
 
 with open("../utils/config.json","r") as f:
     config = json.load(f)
