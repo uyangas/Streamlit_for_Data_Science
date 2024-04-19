@@ -24,7 +24,7 @@ PATH = config['DATA_PATH']
 
 pd.set_option('display.float_format', '{:.2f}'.format)
 st.set_page_config(
-    page_title="Кофе Шоп-н Борлуулалтын Дашбоард",
+    page_title="Байршил",
     page_icon="🏂",
     layout="wide",
     initial_sidebar_state="expanded")
