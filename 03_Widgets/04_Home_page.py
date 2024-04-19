@@ -1,7 +1,5 @@
-
 import streamlit as st
 import pandas as pd
-import numpy as np
 
 pd.set_option('display.float_format', '{:.2f}'.format)
 st.set_page_config(
