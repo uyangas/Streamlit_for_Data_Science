@@ -8,14 +8,12 @@ import sys
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 from bokeh.plotting import figure
 from bokeh.layouts import gridplot
 from bokeh.models import FactorRange, HoverTool
-from bokeh.transform import dodge
 
 import altair as alt
 
