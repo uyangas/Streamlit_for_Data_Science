@@ -15,7 +15,7 @@
 1. Streamlit-н үндэс
     - streamlit app basics
     - text functions
-1. Үндсэн функцууд
+1. Interactive график байгуулах функцууд
     - `Streamlit`-г ашиглан график харуулах
         - Data: https://www.kaggle.com/datasets/ahmedabbas757/coffee-sales
         - Intro to `plotly`
