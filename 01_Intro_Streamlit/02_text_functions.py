@@ -5,6 +5,8 @@ import os
 import sys
 import json
 
+# -----------------
+
 with open("../utils/config.json","r") as f:
     config = json.load(f)
 
@@ -17,15 +19,18 @@ PATH = config['DATA_PATH']
 pd.set_option('display.float_format', '{:.2f}'.format)
 st.set_page_config(layout='wide')
 
+# -----------------
+
 def load_data(extend_cols):
     df = pd.read_excel(os.path.join(PATH, "Coffee Shop Sales.xlsx"))
     df = process_data(df, extend_cols=extend_cols)
 
     return df
 
-
 # өгөгдлийг оруулж ирэх
 coffee_df = load_data(extend_cols=False)
+
+# -----------------
 
 st.title("КОФЕ ШОП-Н БОРЛУУЛАЛТЫН АНАЛИЗ")
 st.header("КОФЕ ШОП-Н ДАТАНЫ ШИНЖ ЧАНАР")

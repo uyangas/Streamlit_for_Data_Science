@@ -19,6 +19,7 @@ import altair as alt
 
 import pydeck as pdk
 
+# -----------------
 
 with open("../utils/config.json","r") as f:
     config = json.load(f)
@@ -37,6 +38,9 @@ color_names = ['aqua','torq', 'teal','powder_blue','blue1','blue3', 'forest_gree
 color_hex = ["#00C4A6", "#00EACD","#00CFE7","#008696","#006996","#005194","#FFCD00","#FF8000","#B0B0B0"]
 
 
+# -----------------
+
+
 @st.cache_data
 def load_data(extend_cols):
     df = pd.read_excel(os.path.join(PATH, "Coffee Shop Sales.xlsx"))
@@ -51,7 +55,7 @@ st.title("КОФЕ ШОП-Н БОРЛУУЛАЛТЫН АНАЛИЗ")
 st.header("КОФЕ ШОП-Н ДАТА")
 st.subheader("**1. НИЙТ БОРЛУУЛАЛТ**")
 
-
+# -----------------
 
 # >>> streamlit-н chart функцуудыг ашиглах нь
 # st.write("1.1. Нийт борлуулалт, сараар")
@@ -68,6 +72,7 @@ st.subheader("**1. НИЙТ БОРЛУУЛАЛТ**")
 # st.bar_chart(temp_df)
 
 
+# -----------------
 
 
 # >>> st.pyplot-г ашиглах нь
@@ -120,6 +125,7 @@ st.pyplot(fig)
 st.markdown("Эдгээр саруудын хувьд орлогыг долоо хоног болон өдрийн дундаж орлогыг харъя.")
 
 
+# -----------------
 
 
 # >>> plotly-г ашиглан график байгуулах нь
@@ -169,6 +175,7 @@ fig.update_layout(
 st.plotly_chart(fig)
 
 
+# -----------------
 
 
 # >>> bokeh-г ашиглан график байгуулах
@@ -181,29 +188,20 @@ st.markdown('''Бүтээгдэхүүний хувьд кофений борлу
 
 # борлуулалтын хэмжээ, өдрийн цагаар, сараар
 temp_df = coffee_df.groupby(["timeofday","monthname_numbered"]).agg({'sales':'sum'}).reset_index()\
-    .pivot_table(index='timeofday', columns='monthname_numbered', values=['sales'])
-temp_df = round(temp_df.div(temp_df.sum(axis=0))*100,2)
-temp_df.columns = ['01_Jan','02_Feb','03_Mar','04_Apr','05_May','06_June']
-timeofday = list(temp_df.index)
-temp_df = temp_df.T.reset_index().rename({'index':'monthname_numbered'},axis=1)
-monthname = list(temp_df['monthname_numbered'])
+    .pivot_table(index='monthname_numbered', columns='timeofday', values=['sales'])
+timeofday = ['afternoon','lunch','dinner','morning']
+temp_df.columns = timeofday
+temp_df = temp_df.reset_index().rename({'index':'monthname_numbered'},axis=1)
 
-data = {'monthname_numbered':list(temp_df['monthname_numbered']),
-        'afternoon':list(temp_df['afternoon']),
-        'dinner':list(temp_df['dinner']),
-        'lunch':list(temp_df['lunch']),
-        'morning':list(temp_df['morning']),
-}
-
-p1 = figure(x_range=FactorRange(factors=monthname), 
+p1 = figure(x_range=FactorRange(factors=temp_df['monthname_numbered']), 
            plot_width=800, plot_height=400, 
-           title="Нийт борлуулалтын хувь, өдрийн цагаар", 
+           title="Нийт борлуулалт, өдрийн цагаар", 
            x_axis_label='Өдрийн цаг', 
-           y_axis_label='Борлуулалтад эзлэх хувь')
+           y_axis_label='Борлуулалт')
 
 renderers = p1.vbar_stack(timeofday,
               x='monthname_numbered',
-              source=data,
+              source=temp_df,
               width=0.7,
               fill_color=color_hex[:4],
               line_color="white",
@@ -212,7 +210,7 @@ renderers = p1.vbar_stack(timeofday,
 for r in renderers:
     timeofday = r.name
     hover = HoverTool(tooltips=[
-        ("%s" % timeofday, "@%s" % timeofday)
+        ("%s" % timeofday, "$@%s" % timeofday)
     ], renderers=[r])
     p1.add_tools(hover)
 
@@ -226,35 +224,22 @@ p1.add_layout(p1.legend[0], 'right')
 
 # борлуулалтын хэмжээ, өдрийн цагаар
 temp_df = coffee_df.groupby(["timeofday","product_category"]).agg({'sales':'sum'}).reset_index()\
-    .pivot_table(index='product_category', columns='timeofday', values=['sales'])
-temp_df = round(temp_df.div(temp_df.sum(axis=0))*100,2)
-temp_df.columns = ['afternoon','dinner','lunch','morning']
-product_category = list(temp_df.index)
-temp_df = temp_df.T.reset_index().rename({'index':'timeofday'},axis=1)
-timeofday = list(temp_df['timeofday'])
+    .pivot_table(index='timeofday', columns='product_category', values=['sales'])
+product_category = ['Bakery','Branded','Coffee','Coffee beans','Drinking Chocolate',
+                   'Flavours','Loose Tea','Packaged Chocolate','Tea']
+temp_df.columns = product_category
+temp_df = temp_df.reset_index().rename({'index':'timeofday'},axis=1)
 
-data = {'timeofday':list(temp_df['timeofday']),
-        'Bakery':list(temp_df['Bakery']),
-        'Branded':list(temp_df['Branded']),
-        'Coffee':list(temp_df['Coffee']),
-        'Coffee beans':list(temp_df['Coffee beans']),
-        'Drinking Chocolate':list(temp_df['Drinking Chocolate']),
-        'Flavours':list(temp_df['Flavours']),
-        'Loose Tea':list(temp_df['Loose Tea']),
-        'Packaged Chocolate':list(temp_df['Packaged Chocolate']),
-        'Tea':list(temp_df['Tea']),
-}
-
-p2 = figure(x_range=FactorRange(factors=timeofday), 
+p2 = figure(x_range=FactorRange(factors=temp_df['timeofday']), 
             plot_width=600, 
             plot_height=400, 
-            title="Бүтээгдэхүүний нийт борлуулалтын хувь, өдрийн цагаар", 
+            title="Бүтээгдэхүүний нийт борлуулалт, өдрийн цагаар", 
             x_axis_label='Өдрийн цаг', 
-            y_axis_label='Борлуулалтад эзлэх хувь')
+            y_axis_label='Борлуулалт')
 
 renderers = p2.vbar_stack(product_category,
               x='timeofday',
-              source=data,
+              source=temp_df,
               width=0.7,
               fill_color=color_hex,
               line_color="white",
@@ -274,11 +259,12 @@ p2.axis.minor_tick_line_color = None
 p2.outline_line_color = None
 p2.add_layout(p2.legend[0], 'right')
 
-grid = gridplot([[p1, p2]])
+grid = gridplot([[p1,p2]])
 
 st.bokeh_chart(grid)
 
 
+# -----------------
 
 
 # >>> altair-г ашиглан график байгуулах
@@ -326,6 +312,7 @@ chart2 = alt.Chart(temp_df,
 st.altair_chart(alt.hconcat(chart1, chart2), use_container_width=True)
 
 
+# -----------------
 
 
 # >>> pydeck-г ашиглан график байгуулах

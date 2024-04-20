@@ -6,6 +6,7 @@ import sys
 
 import altair as alt
 
+# -----------------
 
 with open("../utils/config.json","r") as f:
     config = json.load(f)
@@ -23,10 +24,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded")
 
-alt.themes.enable("dark")
-
 color_names = ['aqua','torq', 'teal','powder_blue','blue1','blue3', 'forest_green','light_orange','light_gray','blood_orange']
 color_hex = ["#00C4A6", "#00EACD","#00CFE7","#008696","#006996","#005194","#FFCD00","#FF8000","#B0B0B0"]
+
+# -----------------
 
 # өгөгдлийг оруулж ирэх ба боловсруулах
 @st.cache_data
@@ -53,6 +54,7 @@ month_name_dict = {"January":"01_Jan","February":"02_Feb","March":"03_Mar","Apri
 
 st.header("Кофе Шоп-н Борлуулалтын Дашбоард")
 
+# -----------------
 
 # >>> Sidebar үүсгэх
 with st.sidebar:
@@ -68,6 +70,10 @@ with st.sidebar:
         product_category_list,
         default=product_category_list[0]
         )
+
+
+# -----------------
+
 
 # >>> Багана үүсгэх
 # Баганы тоог бичих

@@ -34,8 +34,8 @@ alt.themes.enable("dark")
 color_names = ['aqua','torq', 'teal','powder_blue','blue1','blue3', 'forest_green','light_orange','light_gray','blood_orange']
 color_hex = ["#00C4A6", "#00EACD","#00CFE7","#008696","#006996","#005194","#FFCD00","#FF8000","#B0B0B0"]
 
-# ---------------------
 
+# ---------------------
 
 # өгөгдлийг оруулж ирэх ба боловсруулах
 @st.cache_data
@@ -83,6 +83,7 @@ with st.sidebar:
         branch_selected = branch_list
     else:
         branch_selected = [branch_radio]
+
 
 # ---------------------
 
