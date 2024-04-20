@@ -86,12 +86,12 @@ with col1:
     st.markdown("Тухайн сар, бүтээгдэхүүний хувьд")
 
     # Сарын борлуулалтын орлого
-    monthly_sales = sidebar_filter(coffee_df, month, product_category, type="Орлого")
+    monthly_sales = sum(sidebar_filter(coffee_df, month, product_category, type="Орлого")['sales'])
     monthly_sales = format_number(monthly_sales)
     st.metric(label="Орлого", value=monthly_sales)
 
     # Сарын борлуулсан бүтээгдэхүүн
-    monthly_product = sidebar_filter(coffee_df, month, product_category, type="Ширхэг")
+    monthly_product = sum(sidebar_filter(coffee_df, month, product_category, type="Ширхэг")['transaction_qty'])
     monthly_product = "{:,}".format(monthly_product)
        
     st.metric(label="Ширхэг", value=monthly_product)
@@ -101,7 +101,7 @@ with col1:
     st.markdown("#### Нийт борлуулалтын %")
     st.markdown("Орлого")
 
-    monthly_sales = sidebar_filter(coffee_df, month, product_category, type="Орлого")
+    monthly_sales = sum(sidebar_filter(coffee_df, month, product_category, type="Орлого")['sales'])
     total_sales = sum(coffee_df['sales'])
     sales_percent = round(monthly_sales*100/total_sales,1)
 
@@ -110,7 +110,7 @@ with col1:
     # Борлуулсан бүтээгдэхүүний тоонд эзлэх хувь
     st.markdown("Ширхэг")
 
-    monthly_product = sidebar_filter(coffee_df, month, product_category, type="Ширхэг")
+    monthly_product = sum(sidebar_filter(coffee_df, month, product_category, type="Ширхэг")['transaction_qty'])
     total_qty = sum(coffee_df['transaction_qty'])
     sales_percent = round(monthly_product*100/total_qty,1)
 
