@@ -31,4 +31,3 @@
    - Багана, таб, хуудас үүсгэх
 1. Streamlit апп-г deploy хийх
     - Streamlit cloud ашиглах
-    - Cloud үйлчилгээ ашиглан deploy хийх
