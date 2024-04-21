@@ -10,6 +10,7 @@
 - `matplotlib`
 - `seaborn`
 - `openpyxl`
+- `scikit-learn`
 - `nbformat` - хэрэв `ipynb` ашиглаж байгаа тохиолдолд шаардаж байгаа бол суулгана
 
 ## Хичээлийн агуулга:
